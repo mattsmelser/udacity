@@ -121,4 +121,17 @@ print(parse_re("(a|b)?+"))
 #  (['RE', ['alt', '(', ['literal', 'a'], ['literal', 'b']],
 
 #
-# def convert(tree):
+#def convert(tree):
+
+
+JSON = grammar("""object => { } | { members }
+members => pair , members | pair
+pair => string : value
+array => [[] []] | [[] elements []]
+elements => value , elements | value
+value => string | number | object | array | true | false | null
+string => "[^"]*"
+number => int frac exp | int frac | int exp | int
+int => -?[1-9][0-9]*
+frac => [.][0-9]+
+exp => [eE][-+]?[0-9]+""", whitespace='\s*')
