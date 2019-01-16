@@ -112,7 +112,7 @@ Fail = (None, None)
 REGRAMMAR = grammar("""RE => lit | alt | opt | plus | group
 lit => [a-z]
 alt => \|
-opt => \?
+opt => ?
 plus => +
 group => ( lit alt lit )""", whitespace='\s*')
 
