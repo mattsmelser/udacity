@@ -29,26 +29,11 @@ import re
 # assert statements in test_ride(), it should be marked correct.
 
 def subway(**lines):
-    """Define a subway map. Input is subway(linename='station1 station2...'...).
+        """Define a subway map. Input is subway(linename='station1 station2...'...).
     Convert that and return a dict of the form: {station:{neighbor:line,...},...}"""
     ## your code here
-    subway = {}
-    place = 0
-    n = 0
-    for element in subway: subway.append(key, value == (element, 0))
-    print(subway)
-        #subway.append(element: {'element(index) - 1', 'element(index) + 1': boston(n)})
-        #element += 1
+    successors = collections.defaultdict(dict)
 
-
-
-    """"#this isnt the right code to be using here :(
-    if here not in subway(lines) or there not in subway(lines):
-        return "Not a valid location"
-    if here == there:
-        return here
-    if here in line1 and there in line1:
-        return len(abs(index(there) - index(here)))"""
 
 boston = subway(
     blue='bowdoin government state aquarium maverick airport suffolk revere wonderland',
