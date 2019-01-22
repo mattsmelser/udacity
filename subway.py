@@ -1,4 +1,4 @@
-import re
+import re, collections
 
 # -----------------
 # User Instructions
@@ -29,11 +29,20 @@ import re
 # assert statements in test_ride(), it should be marked correct.
 
 def subway(**lines):
-        """Define a subway map. Input is subway(linename='station1 station2...'...).
+    """Define a subway map. Input is subway(linename='station1 station2...'...).
     Convert that and return a dict of the form: {station:{neighbor:line,...},...}"""
-    ## your code here
     successors = collections.defaultdict(dict)
+    for linename, stops in lines.items():
+        for a,b in overlapping_pairs(stops.split()):
+            successors[a][b] = linename
+            successors[b][a] = linename
+    return successors
 
+def overlapping_pairs(values):
+    ret_val = []
+    for i in range(len(values)-1):
+        ret_val.append(values[i:i+2])
+    return ret_val
 
 boston = subway(
     blue='bowdoin government state aquarium maverick airport suffolk revere wonderland',
@@ -41,22 +50,29 @@ boston = subway(
     green='lechmere science north haymarket government park copley kenmore newton riverside',
     red='alewife davis porter harvard central mit charles park downtown south umass mattapan')
 
-def line_search(station, system=boston):
-    [here_lines] = re.findall(here, system)
-    [there_lines] = re.findall(there, system)
-    return here_lines, there_lines
-
-
-
 def ride(here, there, system=boston):
     "Return a path on the subway system from here to there."
-    ## your code here
+    return shortest_path_search(here, lambda s: system[s], lambda s: s == there)
+
 
 
 def longest_ride(system):
     """"Return the longest possible 'shortest path'
-    ride between any two stops in the system."""
-    ## your code here
+    ride between any two stops in the system."""
+    """longest = []
+    locations = set(system.keys())
+    for a in locations:
+        for b in locations:
+            length = ride(a, b)
+            if len(length) > len(longest):
+                longest = length
+            else:
+                continue
+    return longest"""
+
+    stops = set(s for dic in boston.values() for s in dic)
+    return max([ride(a,b) for a in stops for b in stops], key=len)
+
 
 
 def shortest_path_search(start, successors, is_goal):
@@ -89,7 +105,7 @@ def path_actions(path):
     "Return a list of actions in this path."
     return path[1::2]
 
-"""
+
 def test_ride():
     assert ride('mit', 'government') == [
         'mit', 'red', 'charles', 'red', 'park', 'green', 'government']
@@ -102,13 +118,17 @@ def test_ride():
     assert (path_states(longest_ride(boston)) == [
         'wonderland', 'revere', 'suffolk', 'airport', 'maverick', 'aquarium', 'state', 'downtown', 'park',
         'charles', 'mit', 'central', 'harvard', 'porter', 'davis', 'alewife'] or
-            path_states(longest_ride(boston)) == [
+        path_states(longest_ride(boston)) == [
                 'alewife', 'davis', 'porter', 'harvard', 'central', 'mit', 'charles',
                 'park', 'downtown', 'state', 'aquarium', 'maverick', 'airport', 'suffolk', 'revere', 'wonderland'])
     assert len(path_states(longest_ride(boston))) == 16
     return 'test_ride passes'
-"""
+
+
 
 print
-"""(test_ride())"""
+#(test_ride())
+#(longest_ride(boston))
+print(path_states(longest_ride(boston)))
+
 
