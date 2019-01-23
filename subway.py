@@ -120,14 +120,20 @@ def test_ride():
         'charles', 'mit', 'central', 'harvard', 'porter', 'davis', 'alewife'] or
         path_states(longest_ride(boston)) == [
                 'alewife', 'davis', 'porter', 'harvard', 'central', 'mit', 'charles',
-                'park', 'downtown', 'state', 'aquarium', 'maverick', 'airport', 'suffolk', 'revere', 'wonderland'])
+                'park', 'downtown', 'state', 'aquarium', 'maverick', 'airport', 'suffolk', 'revere', 'wonderland']) or \
+        (path_states(longest_ride(boston)) == [
+                'wonderland', 'revere', 'suffolk', 'airport', 'maverick', 'aquarium', 'state', 'government', 'park',
+                'charles', 'mit', 'central', 'harvard', 'porter', 'davis', 'alewife'] or
+        path_states(longest_ride(boston)) == [
+                'alewife', 'davis', 'porter', 'harvard', 'central', 'mit', 'charles',
+                 'park', 'government', 'state', 'aquarium', 'maverick', 'airport', 'suffolk', 'revere', 'wonderland'])
     assert len(path_states(longest_ride(boston))) == 16
     return 'test_ride passes'
 
 
 
 print
-#(test_ride())
+(test_ride())
 #(longest_ride(boston))
 print(path_states(longest_ride(boston)))
 
