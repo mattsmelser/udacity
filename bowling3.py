@@ -56,7 +56,7 @@ def frame_score(balls): # here is where I'm trying to impliment the counting for
         if ball1 == 10:
             ball1 += next_two #if it's a strike, add the next two balls
         elif ball1 + ball2 == 10:
-            ball2 += next_one #if it's a spare, add the next ballguration
+            ball2 += next_one #if it's a spare, add the next ball
         running_score += ball1 + ball2 #add both totals from this frame to the score
         return running_score #return the score and exit this loop
 
