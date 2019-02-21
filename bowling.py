@@ -33,10 +33,32 @@ For example, bowling([10, 7, 3, ...]) means that you get a strike, you score
 
 """
 
+running_score = 0
+
 def bowling(balls):
     "Compute the total score for a player's game of bowling."
     ## bowling([int, ...]) -> int
     ## your code here
+    n = 0
+    while n < len(balls): #trying to iterate through the list of balls thrown and basically look at the odd ones, or the first one for each frame
+        if n % 2 == 1:  # if the number is odd
+            frame_score(balls) #if the number is odd, I want to calculate the score in that specific frame, if the throw isn't an odd number, then it's the second throw of a frame
+        else:
+            continue
+
+def frame_score(balls): # here is where I'm trying to impliment the counting for each ball thrown and including the different rules for spares and strikes
+    ball1 = balls[n] #first ball thrown in a given frame
+    ball2 = balls[n + 1] #second ball thrown in a given frame
+    next_one = balls[n + 2] #the first ball from the next frame
+    next_two = next_one + balls[n + 3] #the second ball from the next frame, which I now see a bug I don't know how to fix.
+    #bug to be fixed: ball1 = 10, so it's a strike, so then I take the next two balls and add them to it.  If ball3 is a 10, I also need to add ball5, if ball3 is not a 10, I just add ball4
+    for ball1 in balls:
+        if ball1 == 10:
+            ball1 += next_two #if it's a strike, add the next two balls
+        elif ball1 + ball2 == 10:
+            ball2 += next_one #if it's a spare, add the next ball
+        running_score += ball1 + ball2 #add both totals from this frame to the score
+        return running_score #return the score and exit this loop
 
 
 def test_bowling():
