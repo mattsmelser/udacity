@@ -41,9 +41,11 @@ def bowling(balls):
     ## your code here
     n = 0
     while n < len(balls): #trying to iterate through the list of balls thrown and basically look at the odd ones, or the first one for each frame
-        if balls[n] % 2 == 1:  # if the number is odd
+        if balls[n] % 2 == 0:  # if the number is odd
             frame_score(balls) #if the number is odd, I want to calculate the score in that specific frame, if the throw isn't an odd number, then it's the second throw of a frame
-        else:
+            n+=1
+        elif balls[n] % 2 == 1:
+            n+=1
             continue
 
 def frame_score(balls): # here is where I'm trying to impliment the counting for each ball thrown and including the different rules for spares and strikes
@@ -61,7 +63,7 @@ def frame_score(balls): # here is where I'm trying to impliment the counting for
         return running_score #return the score and exit this loop
 
 
-def test_bowling():
+"""def test_bowling():
     assert   0 == bowling([0] * 20)
     assert  20 == bowling([1] * 20)
     assert  80 == bowling([4] * 20)
@@ -71,4 +73,8 @@ def test_bowling():
     assert  11 == bowling([0,0] * 9 + [10,1,0])
     assert  12 == bowling([0,0] * 8 + [10, 1,0])
 
-test_bowling()
+test_bowling()"""
+
+
+
+print (bowling([10,10,10,10,10,10,10,10,10,10,10,9]))

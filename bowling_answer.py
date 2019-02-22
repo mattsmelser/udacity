@@ -34,4 +34,6 @@ def test_bowling():
     assert  20 == bowling([0,0] * 9 + [10,5,5])
     return "test pass"
 
-test_bowling()
+#test_bowling()
+
+print (bowling([10,10,10,10,10,10,10,10,10,10,10,9]))
