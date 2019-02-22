@@ -39,12 +39,11 @@ def bowling(balls):
     "Compute the total score for a player's game of bowling."
     ## bowling([int, ...]) -> int
     ## your code here
-    total = 0
     frame_scores = []
     idx = 0
     while idx < len(balls):
         val = balls[idx]
-        if len(frame_scores) >= 10:
+        if len(frame_scores) >= 9:
             frame_scores.append(val)
             idx += 1
         elif val == 10:
@@ -93,3 +92,7 @@ test_bowling()"""
 
 
 print (bowling([10,10,10,10,10,10,10,10,10,10,10,9]))
+
+print (bowling([10,10,10,10,10,10,10,10,10,10,10,10]))
+
+print (bowling([10,10,10,10,10,10,10,10,10,10,9,10]))
