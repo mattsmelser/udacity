@@ -39,28 +39,43 @@ def bowling(balls):
     "Compute the total score for a player's game of bowling."
     ## bowling([int, ...]) -> int
     ## your code here
-    n = 0
-    while n < len(balls): #trying to iterate through the list of balls thrown and basically look at the odd ones, or the first one for each frame
-        if balls[n] % 2 == 0:  # if the number is odd
-            frame_score(balls) #if the number is odd, I want to calculate the score in that specific frame, if the throw isn't an odd number, then it's the second throw of a frame
-            n+=1
-        elif balls[n] % 2 == 1:
-            n+=1
-            continue
+    total = 0
+    frame_scores = []
+    idx = 0
+    while idx < len(balls):
+        val = balls[idx]
+        if len(frame_scores) >= 10:
+            frame_scores.append(val)
+            idx += 1
+        elif val == 10:
+            if idx == len(balls)-2:
+                bonus_ball_1 = balls[idx + 1]
+                idx += 1
+                frame_scores.append(val + bonus_ball_1)
+            elif idx == len(balls)-1:
+                idx += 1
+                frame_scores.append(val)
+            else:
+                bonus_ball_1 = balls[idx + 1]
+                bonus_ball_2 = balls[idx + 2]
+                frame_scores.append(val + bonus_ball_1 + bonus_ball_2)
+                idx += 1
+        else:  # Not a strike, could be spare or other
+            if val + balls[idx + 1] == 10:
+                next_ball = balls[idx + 1]
+                bonus_ball = balls[idx + 2]
+                frame_scores.append(val + next_ball + bonus_ball)
+            else:
+                next_ball = balls[idx + 1]
+                frame_scores.append(val + next_ball)
+            idx += 2  # skip second ball
+    total = sum(frame_scores)
+    return total
 
-def frame_score(balls): # here is where I'm trying to impliment the counting for each ball thrown and including the different rules for spares and strikes
-    ball1 = balls[n] #first ball thrown in a given frame
-    ball2 = balls[n + 1] #second ball thrown in a given frame
-    next_one = balls[n + 2] #the first ball from the next frame
-    next_two = next_one + balls[n + 3] #the second ball from the next frame, which I now see a bug I don't know how to fix.
-    #bug to be fixed: ball1 = 10, so it's a strike, so then I take the next two balls and add them to it.  If ball3 is a 10, I also need to add ball5, if ball3 is not a 10, I just add ball4
-    for ball1 in balls:
-        if ball1 == 10:
-            ball1 += next_two #if it's a strike, add the next two balls
-        elif ball1 + ball2 == 10:
-            ball2 += next_one #if it's a spare, add the next ballguration
-        running_score += ball1 + ball2 #add both totals from this frame to the score
-        return running_score #return the score and exit this loop
+
+
+
+
 
 
 """def test_bowling():
