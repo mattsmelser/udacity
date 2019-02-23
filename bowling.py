@@ -77,7 +77,7 @@ def bowling(balls):
 
 
 
-"""def test_bowling():
+def test_bowling():
     assert   0 == bowling([0] * 20)
     assert  20 == bowling([1] * 20)
     assert  80 == bowling([4] * 20)
@@ -86,10 +86,9 @@ def bowling(balls):
     assert 200 == bowling([10, 5,5] * 5 + [10])
     assert  11 == bowling([0,0] * 9 + [10,1,0])
     assert  12 == bowling([0,0] * 8 + [10, 1,0])
+    print ("test pass")
 
-test_bowling()"""
-
-
+test_bowling()
 
 print (bowling([10,10,10,10,10,10,10,10,10,10,10,9]))
 
