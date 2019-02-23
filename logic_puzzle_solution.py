@@ -27,3 +27,5 @@ def answer(**names):
     return sorted(names, key=lambda name: names[name])
 
 assert logic_puzzle() == ['Wilkes', 'Simon', 'Knuth', 'Hamming', 'Minsky']
+
+print(logic_puzzle())
