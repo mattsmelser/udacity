@@ -34,24 +34,31 @@ def logic_puzzle():
     "Return a list of the names of the people, in the order they arrive."
     ## your code here; you are free to define additional functions if needed
     days = mon, tue, wed, thu, fri = [1,2,3,4,5]
-    orderings = list(itertools.permuations(days))
-    for (Hamming, Knuth, Minsky, Simon, Wilkes) in orderings:
-        if Knuth == Simon + 1 #6
-    for (programmer, writer, manager, designer, _) in orderings:
-        if Knuth == manager + 1 #10
-        and Wilkes != programmer #2
-        and Minsky != writer #4
-        and Knuth != manager #5
-        and designer != thu #7
-    for (laptop, droid, tablet, iphone, _) in orderings:
-        if laptop == wed #1
-        and tablet != manager #5
-        and tablet != fri #8
-        and droid != designer #9
-        and (iphone == tue or tablet == tue) #12
-        if set([laptop, Wilkes]) == set([mon, writer]) #11
-        and set([programmer, droid]) == set([Wilkes, Hamming])
+    orderings = list(itertools.permutations(days))
 
+    for (Hamming, Knuth, Minsky, Simon, Wilkes) in orderings:
+        if Knuth == Simon + 1: #6
+
+            for (programmer, writer, manager, designer, _) in orderings:
+                if (Knuth == manager + 1 #10
+                and Wilkes != programmer #2
+                and Minsky != writer #4
+                and Knuth != manager #5
+                and designer != thu): #7
+
+                    for (laptop, droid, tablet, iphone, _) in orderings:
+                        if (laptop == wed #1
+                        and tablet != manager #5
+                        and tablet != fri #8
+                        and droid != designer #9
+                        and (iphone == tue or tablet == tue) #12
+                        and set([laptop, Wilkes]) == set([mon, writer]) #11
+                        and set([programmer, droid]) == set([Wilkes, Hamming])): #3
+
+                            return answer(Wilkes=Wilkes, Hamming=Hamming, Minsky=Minsky, Knuth=Knuth, Simon=Simon)
+
+def answer(**names):
+    return sorted(names, key=lambda name: names[name])
 print(logic_puzzle())
 
 

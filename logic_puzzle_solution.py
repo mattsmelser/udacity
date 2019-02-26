@@ -8,10 +8,12 @@ def logic_puzzle():
                        Knuth=Knuth, Simon=Simon)
                 for (Wilkes, Hamming, Minsky, Knuth, Simon) in possible_days
                 if Knuth == Simon + 1 # 6
+
                 for (programmer,writer,manager,designer,_) in possible_days
                 if Knuth == manager + 1 # 10
                 and thu != designer # 7
                 and programmer != Wilkes and writer != Minsky # 2, 4
+
                 for (laptop, droid, tablet, iphone, _) in possible_days
                 if set([laptop, Wilkes]) == set([mon, writer]) # 11
                 and set([programmer, droid]) == set([Wilkes, Hamming]) # 3
