@@ -30,10 +30,7 @@ we will store the coefficients in the .coefs attribute of the function, so we ha
 And finally, the name of the function will be the formula given above, so you should
 have something like this:
 
-    >>> p1
-    <function 30 * x**2 + 20 * x + 10 at 0x100d71c08>
 
-    >>> p1.__name__
     '30 * x**2 + 20 * x + 10'
 
 Make sure the formula used for function names is simplified properly.
@@ -49,17 +46,22 @@ Your task is to write the function poly and the following additional functions:
 
 They are described below; see the test_poly function for examples.
 """
-
-
 def poly(coefs):
-    """Return a function that represents the polynomial with these coefficients.
-    For example, if coefs=(10, 20, 30), return the function of x that computes
-    '30 * x**2 + 20 * x + 10'.  Also store the coefs on the .coefs attribute of
-    the function, and the str of the formula on the .__name__ attribute.'"""
-    # your code here (I won't repeat "your code here"; there's one for each function)
+    polynomial = []
+    for exp, coef in reversed(list(enumerate(coefs))):
+        polynomial.append(term(coef,exp))
+    polynomial = " + ".join(polynomial)
+    return polynomial
+
+def term(coef, exp):
+    "Return a string representing 'coef * x**exp' in simplified form."
+    if exp == 0:
+        return str(coef)
+    xn = 'x' if (exp == 1) else ('x**' + str(exp))
+    return xn if (coef == 1) else '-' + xn if (coef == -1) else str(coef) + ' * ' + xn
 
 
-def test_poly():
+"""def test_poly():
     global p1, p2, p3, p4, p5, p9  # global to ease debugging in an interactive session
 
     p1 = poly((10, 20, 30))
@@ -97,7 +99,7 @@ def test_poly():
     assert p5(2) == 258
     assert same_name(deriv(p5).__name__, '25 * x**4 + 16 * x**3 + 9 * x**2 + 4 * x + 1')
     assert deriv(p5)(1) == 55
-    assert deriv(p5)(2) == 573
+    assert deriv(p5)(2) == 573"""
 
 
 def same_name(name1, name2):
@@ -112,6 +114,7 @@ def same_name(name1, name2):
 def is_poly(x):
     "Return true if x is a poly (polynomial)."
     ## For examples, see the test_poly function
+    #This needs to be worked on, I don't understand this or the solution given
 
 
 def add(p1, p2):
@@ -166,7 +169,7 @@ as in Poly('30 * x**2 + 20 * x + 10').  Call test_poly2().
 """
 
 
-def test_poly1():
+"""def test_poly1():
     # I define x as the polynomial 1*x + 0.
     x = poly((0, 1))
     # From here on I can create polynomials by + and * operations on x.
@@ -179,5 +182,7 @@ def test_poly1():
 def test_poly2():
     newp1 = Poly('30 * x**2 + 20 * x + 10')
     assert p1(100) == newp1(100)
-    assert same_name(p1.__name__, newp1.__name__)
+    assert same_name(p1.__name__, newp1.__name__)"""
 
+print (poly([10,20,30]))
+#poly(30, 2)
