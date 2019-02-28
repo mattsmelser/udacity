@@ -47,11 +47,12 @@ Your task is to write the function poly and the following additional functions:
 They are described below; see the test_poly function for examples.
 """
 def poly(coefs):
-    polynomial = []
+    ret_val={}
+    ret_val.coefs = coefs
     for exp, coef in reversed(list(enumerate(coefs))):
         polynomial.append(term(coef,exp))
-    polynomial = " + ".join(polynomial)
-    return polynomial
+    ret_val.__name__ = " + ".join(polynomial)
+    return ret_val
 
 def term(coef, exp):
     "Return a string representing 'coef * x**exp' in simplified form."
@@ -119,6 +120,14 @@ def is_poly(x):
 
 def add(p1, p2):
     "Return a new polynomial which is the sum of polynomials p1 and p2."
+    for coef, exp in list(enumerate(p1)):
+
+
+    for coef, exp in list(enumerate(p2)):
+        pass
+
+
+
 
 
 def sub(p1, p2):
@@ -185,4 +194,5 @@ def test_poly2():
     assert same_name(p1.__name__, newp1.__name__)"""
 
 print (poly([10,20,30]))
+print (poly)
 #poly(30, 2)

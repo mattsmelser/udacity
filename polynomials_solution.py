@@ -7,7 +7,7 @@ def poly(coefs):
     the function, and the str of the formula on the .__name__ attribute.'"""
     return polynomial(canonical(coefs))
 
-@memo
+#@memo
 def polynomial(coefs):
     """Return a polynomial function with these attributes.  Memoized, so any
     two polys with the same coefficients will be identical polys."""
@@ -106,3 +106,7 @@ def deriv(p):
 def integral(p, C=0):
     "Return the integral of a function p (with respect to its argument)."
     return poly([C] + [float(c)/(n+1) for (n, c) in enumerate(p.coefs)])
+
+p1 = (10,20,30)
+p2 = (30,40)
+print (add(p1,p2))
