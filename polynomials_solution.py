@@ -107,6 +107,11 @@ def integral(p, C=0):
     "Return the integral of a function p (with respect to its argument)."
     return poly([C] + [float(c)/(n+1) for (n, c) in enumerate(p.coefs)])
 
-p1 = (10,20,30)
-p2 = (30,40)
-print (add(p1,p2))
+#p1 = poly([10,20,30])
+#p2 = poly([30,40])
+p=poly(5)
+n=(3)
+#print (add(p1,p2))
+#print (sub(p1,p2))
+#print (mul(p1,p2))
+print (power(p,n))
